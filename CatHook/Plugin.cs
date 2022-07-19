@@ -23,19 +23,11 @@ namespace CatHook
             CustomConfig = new Config();
             CustomConfigs.Add(CustomConfig);
             if (!CustomConfig.IsEnable) return;
-
-            Qurre.Events.Voice.PressAltChat += PressV;
         }
         public void UnregisterEvents()
         {
             CustomConfigs.Remove(CustomConfig);
             if (!CustomConfig.IsEnable) return;
-
-            Qurre.Events.Voice.PressAltChat -= PressV;
-        }
-        public static void PressV(PressAltChatEvent ev)
-        {
-            if (ev.Value) Timing.RunCoroutine(Teleport(ev.Player));
         }
         internal static IEnumerator<float> Teleport(Player player)
         {
