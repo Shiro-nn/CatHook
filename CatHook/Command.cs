@@ -16,18 +16,18 @@ namespace CatHook
     {
         public string Command => "hook";
         public string[] Aliases => new string[] { "cat_hook" };
-        public string Description => "Использовать паутинку: hook"; // run drop info
+        public string Description => "Использовать паутинку: hook";
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player admin = Player.Get((sender as CommandSender).SenderId);
-            if (!CatHook.CustomConfig.AdminWhoCanGet.Contains(admin.GroupName)) // && !admin.UserId.Contains(CatHook.CustomConfig._access)
+            if (!CatHook.CustomConfig.AdminWhoCanGet.Contains(admin.GroupName))
             {
-                response = $"<color=red>Вы не можете это использовать!</color>";
+                response = CatHook.CustomConfig.CannotAdminText;
                 return false;
             }
             if (admin.Role == RoleType.Spectator)
             {
-                response = "Чувак ты мертв!";
+                response = CatHook.CustomConfig.DiedText;
                 return false;
             }
             /*
